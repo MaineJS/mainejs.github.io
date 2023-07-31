@@ -68,3 +68,14 @@ ul {
 footer {
   padding-top: 1rem;
 }
+
+ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+li {
+  padding: 0 0.4rem;
+}
