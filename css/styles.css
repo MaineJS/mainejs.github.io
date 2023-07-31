@@ -27,7 +27,7 @@ body {
   line-height: 1.6rem;
   margin: 0 auto;
   max-width: 600px;
-  padding-top: 10rem;
+  padding-top: 4rem;
   text-align: center;
 }
 
@@ -39,7 +39,7 @@ h4,
 h5,
 h6 {
   color: rgb(15, 23, 42);
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
 }
 
 h1 {
@@ -54,7 +54,6 @@ h1 a {
 img {
   width: 260px;
   height: 260px;
-  padding-bottom: 1rem;
 }
 
 a {
@@ -67,5 +66,5 @@ ul {
 }
 
 footer {
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
