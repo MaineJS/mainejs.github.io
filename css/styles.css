@@ -1,8 +1,71 @@
 @import url('normalize.css');
 
+@media (prefers-reduced-motion: no-preference) {
+  .app-logo {
+    animation: shake 0.45s ease-in-out 2;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(5px, 5px) rotate(5deg);
+  }
+  50% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  75% {
+    transform: translate(-5px, 5px) rotate(-5deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes badge-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spark-fall {
+  0% {
+    transform: translateY(-8px) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(210px) scale(0.6);
+    opacity: 0;
+  }
+}
+
 html {
   min-height: 100%;
-  background: radial-gradient(circle at top, #fdf8cb 0%, #fff7e4 45%, #ffffff 100%);
+  background: radial-gradient(
+    circle at top,
+    #fdf8cb 0%,
+    #fff7e4 45%,
+    #ffffff 100%
+  );
 }
 
 body {
@@ -15,7 +78,7 @@ body {
   justify-content: center;
   color: #334155;
   font-family:
-    "Avenir Next",
+    'Avenir Next',
     Avenir,
     ui-sans-serif,
     system-ui,
@@ -32,6 +95,8 @@ body {
 }
 
 .container {
+  position: relative;
+  overflow: hidden;
   width: min(680px, 92vw);
   background: rgba(255, 255, 255, 0.86);
   border: 1px solid rgba(148, 163, 184, 0.28);
@@ -41,6 +106,19 @@ body {
     0 12px 36px rgba(15, 23, 42, 0.12),
     0 2px 8px rgba(15, 23, 42, 0.08);
   backdrop-filter: blur(4px);
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease,
+    background-color 220ms ease;
+}
+
+.party-mode .container {
+  background: rgba(255, 255, 255, 0.93);
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.18),
+    0 0 24px rgba(59, 130, 246, 0.25),
+    0 0 40px rgba(217, 70, 239, 0.16);
 }
 
 img {
@@ -67,6 +145,27 @@ p {
   margin: 1rem auto 0;
   max-width: 58ch;
   font-size: 1.05rem;
+}
+
+.party-badge {
+  margin-top: 0.9rem;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a855f7, #2563eb);
+  color: #ffffff;
+  font-size: 0.87rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.party-badge.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: badge-pop 150ms ease-out;
 }
 
 h1 a {
@@ -117,6 +216,23 @@ li a {
 
 li a:hover {
   background: rgba(219, 234, 254, 0.72);
+}
+
+.spark {
+  position: absolute;
+  top: 12px;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  animation: spark-fall 1000ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spark {
+    display: none;
+  }
 }
 
 footer {

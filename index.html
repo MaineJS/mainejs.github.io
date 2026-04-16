@@ -22,6 +22,56 @@
     <meta property="og:image" content="/images/twittercard.jpeg" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
 
+    <script>
+      let keySequence = '';
+      const targetWord = 'mainejs';
+      let partyTimeout;
+
+      function triggerPartyMode() {
+        const image = document.getElementById('logo');
+        const container = document.querySelector('.container');
+        const badge = document.getElementById('party-badge');
+
+        if (!image || !container || !badge) {
+          return;
+        }
+
+        image.classList.remove('app-logo');
+        void image.offsetWidth;
+        image.classList.add('app-logo');
+
+        document.body.classList.add('party-mode');
+        badge.classList.add('is-visible');
+
+        for (let i = 0; i < 18; i += 1) {
+          const spark = document.createElement('span');
+          spark.className = 'spark';
+          spark.style.left = `${Math.random() * 100}%`;
+          spark.style.animationDelay = `${Math.random() * 140}ms`;
+          spark.style.background = `hsl(${Math.floor(Math.random() * 360)} 95% 62%)`;
+          container.appendChild(spark);
+
+          setTimeout(() => spark.remove(), 1050);
+        }
+
+        clearTimeout(partyTimeout);
+        partyTimeout = setTimeout(() => {
+          document.body.classList.remove('party-mode');
+          badge.classList.remove('is-visible');
+          image.classList.remove('app-logo');
+        }, 1300);
+      }
+
+      document.addEventListener('keyup', (event) => {
+        keySequence += event.key.toLowerCase();
+        keySequence = keySequence.slice(-targetWord.length);
+
+        if (keySequence === targetWord) {
+          triggerPartyMode();
+        }
+      });
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -41,7 +91,7 @@
   <body>
     <main class="container">
       <a href="/">
-        <img src="/images/logo.png" alt="Maine JS Logo" />
+        <img id="logo" src="/images/logo.png" alt="Maine JS Logo" />
       </a>
 
       <h1><a href="/">Maine JS Meetup</a></h1>
@@ -50,6 +100,9 @@
         Maine JS is a monthly meetup for JavaScript and web developers in Maine
         who want to meet peers, share ideas, and stay connected to the local dev
         community.
+      </p>
+      <p id="party-badge" class="party-badge" aria-live="polite">
+        Now with JavaScript!
       </p>
 
       <h2>Links</h2>
