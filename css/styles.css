@@ -91,13 +91,13 @@ h1 a:hover {
 }
 
 a {
-  color: #1d4ed8;
+  color: oklch(37.8% 0.077 168.94);
   text-underline-offset: 3px;
   transition: color 120ms ease-in-out;
 }
 
 a:hover {
-  color: #1e40af;
+  color: oklch(37.8% 0.077 168.94);
 }
 
 ul {
@@ -117,7 +117,7 @@ li {
 
 li a {
   display: inline-block;
-  border: 1px solid rgba(29, 78, 216, 0.24);
+  border: 1px solid oklch(59.6% 0.145 163.225);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.95);
   padding: 0.45rem 0.9rem;
@@ -126,7 +126,7 @@ li a {
 }
 
 li a:hover {
-  background: rgba(219, 234, 254, 0.72);
+  background: oklch(95% 0.052 163.051);
 }
 
 .spark {
